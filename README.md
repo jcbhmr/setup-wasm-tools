@@ -7,14 +7,14 @@
 ```yml
 - uses: jcbhmr/setup-wasm-tools@v2
 - run: cargo build --target wasm32-wasi
-- run: wasmtime target/wasm32-wasi/debug/*.wasm
+- run: wasm-tools print target/wasm32-wasi/debug/*.wasm
 ```
 
 </table>
 
-🟪 Installs Wasmtime globally \
+🟪 Installs wasm-tools globally \
 🔢 Supports semver ranges \
-📁 Caches the Wasmtime installation
+📁 Caches the wasm-tools installation
 
 ## Usage
 
@@ -32,14 +32,14 @@ jobs:
       - uses: actions/checkout@v4
       - uses: jcbhmr/setup-wasm-tools@v2
       - run: cargo build --target wasm32-wasi
-      - run: wasmtime target/wasm32-wasi/debug/*.wasm
+      - run: wasm-tools print target/wasm32-wasi/debug/*.wasm
 ```
 
 ### Inputs
 
-- **`wasmtime-version`:** Which version of Wasmtime to install. This can be an exact version specifier such as `16.0.0` or a semver range like `~16.0.0` or `16.x`. Use `latest` to always install the latest release. Defaults to `latest`.
+- **`wasm-tools-version`:** Which version of wasm-tools to install. This can be an exact version specifier such as `16.0.0` or a semver range like `~16.0.0` or `16.x`. Use `latest` to always install the latest release. Defaults to `latest`.
 
-- **`wasmtime-token`:** The GitHub token to use when fetching the version list from [bytecodealliance/wasmtime](https://github.com/bytecodealliance/wasmtime/releases). You shouldn't have to touch this. The default is the `github.token` if you're on github.com or unauthenticated (rate limited) if you're not on github.com.
+- **`wasm-tools-token`:** The GitHub token to use when fetching the version list from [bytecodealliance/wasm-tools](https://github.com/bytecodealliance/wasm-tools/releases). You shouldn't have to touch this. The default is the `github.token` if you're on github.com or unauthenticated (rate limited) if you're not on github.com.
 
 ## Development
 
