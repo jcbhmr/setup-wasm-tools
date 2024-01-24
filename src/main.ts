@@ -6,7 +6,8 @@ import * as semver from "semver";
 import * as github from "@actions/github";
 import { createUnauthenticatedAuth } from "@octokit/auth-unauthenticated";
 
-const token = core.getInput("github_token") || core.getInput("wasm-tools-token");
+const token =
+  core.getInput("github_token") || core.getInput("wasm-tools-token");
 const octokit = token
   ? github.getOctokit(token)
   : github.getOctokit(token, {
@@ -22,13 +23,15 @@ if (version === "latest") {
     owner: "bytecodealliance",
     repo: "wasm-tools",
   });
-  version = data.tag_name.slice(1);
+  version = data.tag_name.slice("wasm-tools-".length);
 } else {
   const releases = await octokit.paginate(octokit.rest.repos.listReleases, {
     owner: "bytecodealliance",
     repo: "wasm-tools",
   });
-  const versions = releases.map((release) => release.tag_name.slice(1));
+  const versions = releases.map((release) =>
+    release.tag_name.slice("wasm-tools-".length),
+  );
   version = semver.maxSatisfying(versions, version)!;
 }
 core.debug(`Resolved version: v${version}`);
