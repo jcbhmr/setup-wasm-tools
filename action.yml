@@ -15,7 +15,7 @@ inputs:
 
 outputs:
   wasm-tools-version:
-    description: The version of wasm-tools that was installed. This will be something like '16.0.0' or similar.
+    description: The version of wasm-tools that was installed. This will be something like '1.0.0' or similar.
   cache-hit:
     description: Whether or not wasm-tools was restored from the runner's cache or download anew.
 
