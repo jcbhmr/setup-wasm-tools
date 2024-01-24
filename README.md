@@ -37,7 +37,7 @@ jobs:
 
 ### Inputs
 
-- **`wasm-tools-version`:** Which version of wasm-tools to install. This can be an exact version specifier such as `16.0.0` or a semver range like `~16.0.0` or `16.x`. Use `latest` to always install the latest release. Defaults to `latest`.
+- **`wasm-tools-version`:** Which version of wasm-tools to install. This can be an exact version specifier such as `1.0.0` or a semver range like `~1.0.0` or `1.x`. Use `latest` to always install the latest release. Defaults to `latest`.
 
 - **`wasm-tools-token`:** The GitHub token to use when fetching the version list from [bytecodealliance/wasm-tools](https://github.com/bytecodealliance/wasm-tools/releases). You shouldn't have to touch this. The default is the `github.token` if you're on github.com or unauthenticated (rate limited) if you're not on github.com.
 
