@@ -1,11 +1,11 @@
-# Setup Wasmtime
+# Setup wasm-tools
 
-🧑‍💻 [Wasmtime](https://wasmtime.dev/) WebAssembly runtime installer for GitHub Actions
+👩‍💻 [wasm-tools](https://github.com/bytecodealliance/wasm-tools) installer for GitHub Actions
 
 <table align=center><td>
 
 ```yml
-- uses: jcbhmr/setup-wasmtime@v2
+- uses: jcbhmr/setup-wasm-tools@v2
 - run: cargo build --target wasm32-wasi
 - run: wasmtime target/wasm32-wasi/debug/*.wasm
 ```
@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: jcbhmr/setup-wasmtime@v2
+      - uses: jcbhmr/setup-wasm-tools@v2
       - run: cargo build --target wasm32-wasi
       - run: wasmtime target/wasm32-wasi/debug/*.wasm
 ```

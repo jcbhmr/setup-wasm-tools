@@ -48,8 +48,8 @@ if (!found) {
     "win32,x64": "x86_64-windows",
   }[[process.platform, process.arch].toString()]!;
   const archiveExt = {
-    darwin: ".tar.xz",
-    linux: ".tar.xz",
+    darwin: ".tar.gz",
+    linux: ".tar.gz",
     win32: ".zip",
   }[process.platform.toString()]!;
   const folder = `wasm-tools-${version}-${target}`;
@@ -64,7 +64,7 @@ if (!found) {
     // https://github.com/actions/toolkit/blob/68f22927e727a60caff909aaaec1ab7267b39f75/packages/tool-cache/src/tool-cache.ts#L226
     // J flag is .tar.xz
     // z flag is .tar.gz
-    found = await tc.extractTar(found, undefined, "xJ");
+    found = await tc.extractTar(found);
   }
   found = join(found, folder);
   found = await tc.cacheDir(found, "wasm-tools", version);
