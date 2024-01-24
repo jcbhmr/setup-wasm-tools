@@ -41,6 +41,12 @@ jobs:
 
 - **`wasm-tools-token`:** The GitHub token to use when fetching the version list from [bytecodealliance/wasm-tools](https://github.com/bytecodealliance/wasm-tools/releases). You shouldn't have to touch this. The default is the `github.token` if you're on github.com or unauthenticated (rate limited) if you're not on github.com.
 
+### Outputs
+
+- **`wasm-tools-version`:** The version of wasm-tools that was installed. This will be something like `1.0.0` or similar.
+
+- **`cache-hit`:** Whether or not wasm-tools was restored from the runner's cache or download anew.
+
 ## Development
 
 ![Node.js](https://img.shields.io/static/v1?style=for-the-badge&message=Node.js&color=339933&logo=Node.js&logoColor=FFFFFF&label=)
