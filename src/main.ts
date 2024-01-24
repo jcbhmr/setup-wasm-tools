@@ -56,7 +56,7 @@ if (!found) {
   const file = `${folder}${archiveExt}`;
 
   found = await tc.downloadTool(
-    `https://github.com/bytecodealliance/wasm-tools/releases/download/v${version}/${file}`,
+    `https://github.com/bytecodealliance/wasm-tools/releases/download/wasm-tools-${version}/${file}`,
   );
   if (file.endsWith(".zip")) {
     found = await tc.extractZip(found);
