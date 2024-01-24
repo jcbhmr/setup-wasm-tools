@@ -1,5 +1,5 @@
 name: Setup wasm-tools
-description: ""
+description: 👩‍💻 wasm-tools installer for GitHub Actions
 
 inputs:
   wasm-tools-version:
