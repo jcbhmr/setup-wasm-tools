@@ -1,6 +1,10 @@
 name: Setup wasm-tools
 description: 👩‍💻 wasm-tools installer for GitHub Actions
 
+branding:
+  icon: arrow-down
+  color: blue
+
 inputs:
   wasm-tools-version:
     description: Which version of wasm-tools to install. This can be an exact version specifier such as '1.0.0' or a semver range like '~1.0.0' or '1.x'. Use 'latest' to always install the latest release. Defaults to 'latest'.
