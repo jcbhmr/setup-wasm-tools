@@ -1,120 +1,49 @@
-# bytecodelliance/actions
+# Setup Wasmtime
 
-With the `bytecodealliance/actions` collection, you can easily setup [wasmtime](https://github.com/bytecodealliance/wasmtime) and [wasm-tools](https://github.com/bytecodealliance/wasm-tools) in your [GitHub Action](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/configuring-a-workflow).
+🧑‍💻 [Wasmtime](https://wasmtime.dev/) WebAssembly runtime installer for GitHub Actions
 
-This collection of Actions enables the following use cases:
+<table align=center><td>
 
-- [x] set up wasmtime using [`bytecodealliance/actions/wasmtime/setup@v1`](#install-wasmtime)
-- [x] set up wasm-tools using [`bytecodealliance/actions/wasm-tools/setup@v1`](#install-wasm-tools)
+```yml
+- uses: jcbhmr/setup-wasmtime@v2
+- run: cargo build --target wasm32-wasi
+- run: wasmtime target/wasm32-wasi/debug/*.wasm
+```
 
-Let's take a look at each one to learn about the required inputs and walk through an example.
+</table>
 
-## Install wasmtime
+🟪 Installs Wasmtime globally \
+🔢 Supports semver ranges \
+📁 Caches the Wasmtime installation
+
+## Usage
+
+![GitHub Actions](https://img.shields.io/static/v1?style=for-the-badge&message=GitHub+Actions&color=2088FF&logo=GitHub+Actions&logoColor=FFFFFF&label=)
+![GitHub](https://img.shields.io/static/v1?style=for-the-badge&message=GitHub&color=181717&logo=GitHub&logoColor=FFFFFF&label=)
+
+**🚀 Here's what you're after:**
+
+```yml
+on: push
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jcbhmr/setup-wasmtime@v2
+      - run: cargo build --target wasm32-wasi
+      - run: wasmtime target/wasm32-wasi/debug/*.wasm
+```
 
 ### Inputs
 
-| Name         | Required | Default | Description                                                                                                                                    |
-| ------------ | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| version      | False    | latest  | The version of `wasmtime` to install.                                                                                                          |
-| github_token | False    | -       | The GitHub token for querying/downloading `wasmtime` releases. If provided, it avoids GitHub API rate limiting during GitHub action executions |
+- **`wasmtime-version`:** Which version of Wasmtime to install. This can be an exact version specifier such as `16.0.0` or a semver range like `~16.0.0` or `16.x`. Use `latest` to always install the latest release. Defaults to `latest`.
 
-### Examples
+- **`wasmtime-token`:** The GitHub token to use when fetching the version list from [bytecodealliance/wasmtime](https://github.com/bytecodealliance/wasmtime/releases). You shouldn't have to touch this. The default is the `github.token` if you're on github.com or unauthenticated (rate limited) if you're not on github.com.
 
-#### Setting up the latest version of `wasmtime`
+## Development
 
-```yaml
-name: wasmtime setup
+![Node.js](https://img.shields.io/static/v1?style=for-the-badge&message=Node.js&color=339933&logo=Node.js&logoColor=FFFFFF&label=)
 
-on:
-  push:
-    branches: [main]
-
-jobs:
-  setup:
-    runs-on: ubuntu-latest
-    name: Setup wasmtime
-    steps:
-      - name: Setup `wasmtime`
-        uses: bytecodealliance/actions/wasmtime/setup@v1
-
-      - name: Run `wasmtime version`
-        run: "wasmtime --version"
-```
-
-#### Setting up a specific version of `wasmtime`
-
-```yaml
-name: wasmtime
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  setup:
-    runs-on: ubuntu-latest
-    name: Setup wasmtime
-    steps:
-      - name: Setup `wasmtime`
-        uses: bytecodealliance/actions/wasmtime/setup@v1
-        with:
-          version: "v13.0.0"
-
-      - name: Run `wasmtime version`
-        run: "wasmtime --version"
-```
-
-## Install wasm-tools
-
-### Inputs
-
-| Name         | Required | Default | Description                                                                                                                                      |
-| ------------ | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| version      | False    | latest  | The version of `wasm-tools` to install.                                                                                                          |
-| github_token | False    | -       | The GitHub token for querying/downloading `wasm-tools` releases. If provided, it avoids GitHub API rate limiting during GitHub action executions |
-
-### Examples
-
-#### Setting up the latest version of `wasm-tools`
-
-```yaml
-name: wasm-tools setup
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  setup:
-    runs-on: ubuntu-latest
-    name: Setup wasm-tools
-    steps:
-      - name: Setup `wasm-tools`
-        uses: bytecodealliance/actions/wasm-tools/setup@v1
-
-      - name: Run `wasm-tools version`
-        run: "wasm-tools --version"
-```
-
-#### Setting up a specific version of `wasm-tools`
-
-```yaml
-name: wasm-tools
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  setup:
-    runs-on: ubuntu-latest
-    name: Setup wasm-tools
-    steps:
-      - name: Setup `wasm-tools`
-        uses: bytecodealliance/actions/wasm-tools/setup@v1
-        with:
-          version: "1.0.43"
-
-      - name: Run `wasm-tools version`
-        run: "wasm-tools --version"
-```
+**How do I test my changes?** \
+Open a Draft Pull Request and some magic GitHub Actions will run to test the action.
