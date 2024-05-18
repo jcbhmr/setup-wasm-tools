@@ -19,7 +19,7 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  test-action:
+  os:
     strategy:
       fail-fast: false
       matrix:
@@ -34,4 +34,22 @@ jobs:
       - run: npm ci
       - run: npm run build
       - uses: ./
+      - run: wasm-tools --version
+  version:
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ["latest", "1.207", "^1.207.0"]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: ./
+        with:
+          wasm-tools-version: ${{ matrix.version }}
       - run: wasm-tools --version
